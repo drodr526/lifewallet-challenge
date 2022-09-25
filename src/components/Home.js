@@ -6,7 +6,7 @@ import { useBottomScrollListener } from "react-bottom-scroll-listener";
 export default function Home(props) {
 
   const [launches, setLaunches] = useState();
-  const [search, setSearch] = useState();
+  const [search, setSearch] = useState("");
 
   const navigate = useNavigate();
 
@@ -87,15 +87,15 @@ export default function Home(props) {
             <th scope="col">Mission name</th>
             <th scope="col">Rocket name</th>
             <th scope="col">Rocket type</th>
-            <th scope="col hide-column">Ship name</th>
-            <th scope="col hide-column">Ship type</th>
-            <th scope="col hide-column">Ship image</th>
+            <th className="hide-column" scope="col">Ship name</th>
+            <th className="hide-column" scope="col">Ship type</th>
+            <th className="hide-column" scope="col">Ship image</th>
           </tr>
         </thead>
         <tbody>
 
           {launches && launches.map((launch) => {
-            if(launch.mission_name.includes(search))
+            if(launch.mission_name.includes(search) || search == "")
             return <tr onClick={() => navigate("/launches/" + launch.mission_name)}>
               <td>{launch.mission_name}</td>
               <td>{launch.rocket.rocket_name}</td>
@@ -113,9 +113,6 @@ export default function Home(props) {
                   return <p><a href={ship.image} display='inline-block'>{ship.image}</a></p>
               })}</td>
             </tr>
-
-            else
-              return null;
           })}
         </tbody>
       </table>
