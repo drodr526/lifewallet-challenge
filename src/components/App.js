@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import LandingPage from "./LandingPage";
+import Launch from "./Launch";
 
 
 function App(props) {
@@ -12,6 +13,7 @@ function App(props) {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/launches/:id" element={<Launch/>}/>
         <Route path="/home" element={<Home />} />
       </Routes>
     </BrowserRouter>
